@@ -26,10 +26,9 @@ public class Join {
     }
 
 }
-
 class MyThread extends Thread {
-
     private String name;
+
     private Object oo;
 
     public void setOo(Object oo) {
@@ -45,15 +44,13 @@ class MyThread extends Thread {
         synchronized (oo) { // 这里用oo或this，效果不同
             for (int i = 0; i < 100; i++) {
                 System.out.println(name + i);
-//                if(i == 50) {
-//                    try {
-//                        oo.wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
             }
             oo.notifyAll();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }
