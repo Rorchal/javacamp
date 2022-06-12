@@ -43,11 +43,12 @@ class MethodClass {
     public synchronized void product() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
-            Thread.sleep(10);
+            Thread.sleep(500);
             if (productCount >= MAX_COUNT) {
                 System.out.println("货舱已满,,.不必再生产");
 
-                wait();
+                wait(1000);
+                System.out.println("货舱已满,,.不必再生产 wait");
             }else {
                 productCount++;
             }
@@ -59,15 +60,16 @@ class MethodClass {
     public synchronized void customer() throws InterruptedException {
         while (true) {
             System.out.println(Thread.currentThread().getName() + ":::run:::" + productCount);
-            Thread.sleep(10);
+            Thread.sleep(500);
             if (productCount <= 0) {
                 System.out.println("货舱已无货...无法消费");
                 wait();
+                System.out.println("货舱已无货...无法消费 wait");
             }else {
                 productCount--;
             }
-
-            notifyAll();
+            System.out.println("唤醒生产货物的线程");
+//            notifyAll();
         }
     }
 }
