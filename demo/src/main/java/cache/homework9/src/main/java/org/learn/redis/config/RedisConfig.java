@@ -30,6 +30,7 @@ public class RedisConfig {
         template.setValueSerializer(new GenericToStringSerializer<Object>(Object.class));
         return template;
     }
+    //123456
 
     @Bean
     MessageListenerAdapter messageListener() {
